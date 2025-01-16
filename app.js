@@ -1,16 +1,16 @@
 const express = require('express');
 const session = require('express-session');
-
+const moment =require('moment-timezone');// commonJS
 
 const app = express();
 
 
 //Configuración de la sesión
 app.use(session({
-    secret: 'mi-clave-secreta', //Secreto para firmar la cookie de sesión
+    secret: 'p3-BLC#Leon-sesionespersistentes', //Secreto para firmar la cookie de sesión
     resave:false,  //No resguardar la sesión si no ha sido modificada
-    saveUninitialized:false,  //Guardar la sesión aunque no haya sido inicializada
-    cookie:{secure:false}  //Usar secure:true solo si usas HTTPS
+    saveUninitialized:true,  //Guardar la sesión aunque no haya sido inicializada
+    cookie:{secure:false,maxAge:24 * 60 * 60 *1000}  //usar secure :true solo si usas HTTPS , maxAge permite definir la duracion maxima de la sesion 
 }));
 
 //Midelware para mostrar detalles de la sesion
